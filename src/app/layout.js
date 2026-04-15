@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +23,37 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="border-b border-white/10 bg-[#0b1238]">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+              <h1 className="text-3xl font-extrabold text-violet-400">
+                Mundo Gamer
+              </h1>
+        
+              <nav className="hidden md:flex gap-8 text-sm font-medium text-white/80">
+                  <Link href="/" className="hover:text-violet-400 transition">
+                    Inicio
+                  </Link>
+                  <Link href="/home/juegos" className="hover:text-violet-400 transition">
+                    Juegos
+                  </Link>
+                  <Link href="/home/noticias" className="hover:text-violet-400 transition">
+                    Noticias
+                  </Link>
+                    <a href="#categorias" className="hover:text-violet-400 transition">
+                      Categorías
+                    </a>
+                </nav>
+        
+                <input
+                  type="text"
+                  placeholder="Buscar juego..."
+                  className="hidden md:block bg-[#11183f] border border-white/10 rounded-full px-4 py-2 text-sm outline-none placeholder:text-white/40"
+                />
+            </div>
+          </header>
+        {children}
+      </body>
     </html>
   );
 }
