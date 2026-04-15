@@ -34,10 +34,10 @@ export default function RootLayout({ children }) {
                   <Link href="/" className="hover:text-violet-400 transition">
                     Inicio
                   </Link>
-                  <Link href="/home/juegos" className="hover:text-violet-400 transition">
+                  <Link href="/juegos" className="hover:text-violet-400 transition">
                     Juegos
                   </Link>
-                  <Link href="/home/noticias" className="hover:text-violet-400 transition">
+                  <Link href="/noticias" className="hover:text-violet-400 transition">
                     Noticias
                   </Link>
                     <a href="#categorias" className="hover:text-violet-400 transition">

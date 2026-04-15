@@ -65,14 +65,14 @@ export default function HomePage() {
 
           <div className="flex gap-4 mb-6">
             <Link
-              href="/home/juegos"
+              href="juegos"
               className="bg-violet-600 px-5 py-3 rounded-xl font-semibold hover:bg-violet-500 transition"
             >
               Ver juegos
             </Link>
 
             <Link
-              href="/home/noticias"
+              href="noticias"
               className="border border-violet-500 text-violet-300 px-5 py-3 rounded-xl font-semibold hover:bg-violet-500 hover:text-white transition"
             >
               Ver noticias
