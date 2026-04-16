@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from 'next/image';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,33 +27,78 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <header className="border-b border-white/10 bg-[#0b1238]">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-              <h1 className="text-3xl font-extrabold text-violet-400">
-                Mundo Gamer
-              </h1>
+            <h1 className="text-3xl font-extrabold text-violet-400">
+              Mundo Gamer
+            </h1>
+      
+            <nav className="hidden md:flex gap-8 text-sm font-medium text-white/80">
+                <Link href="/" className="hover:text-violet-400 transition">
+                  Inicio
+                </Link>
+                <Link href="/juegos" className="hover:text-violet-400 transition">
+                  Juegos
+                </Link>
+                <Link href="/noticias" className="hover:text-violet-400 transition">
+                  Noticias
+                </Link>
+                <a href="#categorias" className="hover:text-violet-400 transition">
+                  Categorías
+                </a>
+            </nav>
+      
+            <input
+              type="text"
+              placeholder="Buscar juego..."
+              className="hidden md:block bg-[#11183f] border border-white/10 rounded-full px-4 py-2 text-sm outline-none placeholder:text-white/40"
+            />
+          </div>
+        </header>
         
-              <nav className="hidden md:flex gap-8 text-sm font-medium text-white/80">
-                  <Link href="/" className="hover:text-violet-400 transition">
-                    Inicio
-                  </Link>
-                  <Link href="/juegos" className="hover:text-violet-400 transition">
-                    Juegos
-                  </Link>
-                  <Link href="/noticias" className="hover:text-violet-400 transition">
-                    Noticias
-                  </Link>
-                    <a href="#categorias" className="hover:text-violet-400 transition">
-                      Categorías
-                    </a>
-                </nav>
-        
-                <input
-                  type="text"
-                  placeholder="Buscar juego..."
-                  className="hidden md:block bg-[#11183f] border border-white/10 rounded-full px-4 py-2 text-sm outline-none placeholder:text-white/40"
-                />
-            </div>
-          </header>
         {children}
+
+        <footer className="grid grid-cols-3 px-20 py-20 border border-white/10 bg-[#0b1238] ">  
+          <h1 className="text-3xl font-extrabold text-violet-400">
+            Mundo Gamer
+          </h1>
+    
+          <div className="hidden md:flex flex-col items-center gap-8 text-sm font-medium text-white/80 ">
+            <Link href="/" className="hover:text-violet-400 transition">
+              Inicio
+            </Link>
+            <Link href="/" className="hover:text-violet-400 transition">
+              Contacto
+            </Link>            
+            <Link href="/" className="hover:text-violet-400 transition">
+              Preguntas frecuentes
+            </Link>
+            <a href="#" className="hover:text-violet-400 transition">
+              Términos y condiciones
+            </a>
+          </div>
+    
+          <div className="flex flex-col items-center gap-3 text-sm font-medium text-white/80 w-full md:w-max mx-auto">
+            <h5 className="">NUESTRAS REDES</h5>
+            <div className="flex gap-4">
+              <Link href="https://instagram.com" className="flex items-center justify-center w-12 h-12 border border-white/20 rounded-xl hover:bg-violet-600/20 hover:text-violet-400 transition-all">
+              <Image 
+                src="/images/imgIns.png"
+                alt="Icono de Instagram"   
+                width={40}
+                height={40}
+              />
+              </Link>
+              <Link href="https://facebook.com" className="flex items-center justify-center w-12 h-12 border border-white/20 rounded-xl hover:bg-violet-600/20 hover:text-violet-400 transition-all">
+                <Image 
+                  src="/images/imgFb.png"
+                  alt="Icono de Facebook"   
+                  width={40}
+                  height={40}
+                />
+              </Link>
+            </div>
+          </div>
+        </footer>
+
       </body>
     </html>
   );
