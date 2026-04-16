@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+
 const categorias = [
   "Acción",
   "Shooter",
@@ -11,11 +12,13 @@ const categorias = [
   "Mundo abierto",
 ];
 
-const juegosDestacados = [
+export const juegosDestacados = [
   {
     titulo: "Counter Strike 2",
     imagen: "/images/counter.jpg",
     categoria: "Shooter",
+    precio: "$14.99 USD",
+    descripcion: "Durante las dos últimas décadas, Counter‑Strike ha proporcionado una experiencia competitiva de primer nivel para los millones de jugadores de todo el mundo que contribuyeron a darle forma. Ahora el próximo capítulo en la historia de CS está a punto de comenzar. Hablamos de Counter‑Strike 2.",
   },
   {
     titulo: "Rocket League",

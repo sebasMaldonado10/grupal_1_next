@@ -2,11 +2,8 @@ import Link from 'next/link'
 import React from 'react'
 
 export default async function DetalleJuego({ params }) {
-// Capturamos el id de la URL (ej: counter-strike-2)
-    const { id } = await params;
-
-    // Limpiamos el nombre para que no tenga guiones y se vea bonito
-    const nombreLimpio = id.replace(/-/g, " ");
+    const { id } = await params
+    const nombreLimpio = id.replace(/-/g, " "); //limpia nombre
 
     return (
         <div className="flex-1 p-12 bg-[#0b1238] min-h-screen text-white">
@@ -23,7 +20,7 @@ export default async function DetalleJuego({ params }) {
         </div>
 
         <button className="mt-10 px-8 py-4 bg-violet-600 hover:bg-violet-500 rounded-full font-bold transition-all">
-            Comprar ahora
+            <Link href={"#"}>Comprar ahora</Link>
         </button>
         </div>
     );

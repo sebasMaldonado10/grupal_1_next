@@ -27,9 +27,9 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <header className="border-b border-white/10 bg-[#0b1238]">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <h1 className="text-3xl font-extrabold text-violet-400">
+            <Link href="/" className="text-3xl font-extrabold text-violet-400">
               Mundo Gamer
-            </h1>
+            </Link>
       
             <nav className="hidden md:flex gap-8 text-sm font-medium text-white/80">
                 <Link href="/" className="hover:text-violet-400 transition">
