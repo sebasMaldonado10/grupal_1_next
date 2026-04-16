@@ -43,6 +43,9 @@ export default function RootLayout({ children }) {
                     <a href="#categorias" className="hover:text-violet-400 transition">
                       Categorías
                     </a>
+                      <a href="/about" className="hover:text-violet-400 transition">
+                      Acerca De
+                    </a>
                 </nav>
         
                 <input
