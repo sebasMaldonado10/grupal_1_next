@@ -2,14 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 const juegos = [
-  { titulo: "Call of Duty", categoria: "Acción", imagen: "/images/cod.jpg" },
-  { titulo: "GTA V", categoria: "Mundo abierto", imagen: "/images/gta.jpg" },
-  { titulo: "Counter Strike 2", categoria: "Shooter", imagen: "/images/counter.jpg" },
-  { titulo: "Rocket League", categoria: "Deportes", imagen: "/images/rocket.jpg" },
-  { titulo: "Minecraft", categoria: "Sandbox", imagen: "/images/minecraft.jpg" },
-  { titulo: "Resident Evil 4", categoria: "Terror", imagen: "/images/re4.jpg" },
-  { titulo: "EA Sports FC 25", categoria: "Deportes", imagen: "/images/fc25.jpg" },
-  { titulo: "Forza Horizon 5", categoria: "Carreras", imagen: "/images/forza.jpg" },
+  { id: "1", titulo: "Counter Strike 2", categoria: "Shooter", imagen: "/images/counter.jpg" },
+  { id: "2", titulo: "Rocket League", categoria: "Deportes", imagen: "/images/rocket.jpg" },
+  { id: "3", titulo: "Minecraft", categoria: "Sandbox", imagen: "/images/minecraft.jpg" },
+  { id: "4", titulo: "Resident Evil 4", categoria: "Terror", imagen: "/images/re4.jpg" },
+  { id: "5", titulo: "EA Sports FC 25", categoria: "Deportes", imagen: "/images/fc25.jpg" },
+  { id: "6", titulo: "Forza Horizon 5", categoria: "Carreras", imagen: "/images/forza.jpg" },
+  { id: "7", titulo: "GTA V", categoria: "Mundo abierto", imagen: "/images/gta.jpg" },
+  { id: "8", titulo: "Call of Duty", categoria: "Acción", imagen: "/images/cod.jpg" },
 ];
 
 export default async function JuegosPage({ searchParams }) {
@@ -76,7 +76,9 @@ export default async function JuegosPage({ searchParams }) {
                 <div className="p-4">
                   <p className="text-violet-400 text-sm mb-1">{juego.categoria}</p>
                   <h2 className="text-lg font-bold">{juego.titulo}</h2>
+                  <span><Link href={"#"}>Ver mas</Link></span>
                 </div>
+
               </article>
             ))}
           </div>
