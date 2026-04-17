@@ -3,18 +3,17 @@ import React from 'react'
 
 export default async function DetalleJuego({ params }) {
     const { id } = await params
-    const nombreLimpio = id.replace(/-/g, " "); //limpia nombre
+    const nombreLimpio = id.replace(/-/g, " "); //limpia nombre de la url
 
     return (
         <div className="flex-1 p-12 bg-[#0b1238] min-h-screen text-white">
-        {/* Esto es lo que aparecerá en el espacio negro de tu foto */}
-        <h1 className="text-6xl font-black uppercase tracking-tighter text-violet-400">
-            {nombreLimpio}
-        </h1>
-        
+            <h1 className="text-6xl font-black uppercase tracking-tighter text-violet-400">
+                {nombreLimpio}
+            </h1>            
         <div className="mt-8 p-6 border border-white/10 rounded-2xl bg-white/5 max-w-2xl">
             <p className="text-xl text-gray-300">
-                <span className="text-white font-bold">{nombreLimpio}</span>. 
+                <span className="text-white font-bold">{nombreLimpio}</span>
+                <hr></hr>
                 Agregar info
             </p>
         </div>

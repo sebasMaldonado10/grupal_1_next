@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-
 const categorias = [
   "Acción",
   "Shooter",
@@ -12,6 +11,7 @@ const categorias = [
   "Mundo abierto",
 ];
 
+//esto no se donde ponerlo para poder importarlo desde otras pags
 export const juegosDestacados = [
   {
     id: "1",
@@ -84,9 +84,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-[#070d2b] text-white">
       <section className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="md:w-1/2">
-          <p className="text-violet-400 uppercase tracking-[0.25em] text-sm mb-3">
-            Tu portal gamer
-          </p>
+          <p className="text-violet-400 uppercase tracking-[0.25em] text-sm mb-3">Tu portal gamer</p>
 
           <h2 className="text-5xl font-extrabold mb-4 leading-tight">
             Descubrí los mejores
