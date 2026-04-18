@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
               Mundo Gamer
             </Link>
       
-            <nav className="hidden md:flex gap-8 text-sm font-medium text-white/80">
+            <nav className="hidden md:flex gap-8 text-base font-medium text-white/80">
                 <Link href="/" className="hover:text-violet-400 transition">
                   Inicio
                 </Link>
@@ -77,6 +77,7 @@ export default function RootLayout({ children }) {
             <div className="flex flex-col gap-4">            
               <Link href="/" className="hover:text-violet-400 transition">Preguntas frecuentes</Link>
               <Link href="/" className="hover:text-violet-400 transition">Términos y condiciones</Link>
+              <Link href={"/about/soporte"} className="hover:text-violet-400 transitions">Soporte</Link>
             </div>
           </div>
 
