@@ -151,7 +151,7 @@ export default function HomePage() {
           {categorias.map((categoria) => (
             <Link
               key={categoria}
-              href={`/home/juegos?categoria=${encodeURIComponent(juegos.categoria)}`}
+              href={`/juegos?categoria=${encodeURIComponent(categoria)}`}
               className="bg-[#11183f] border border-violet-500/20 text-violet-300 px-5 py-2 rounded-full text-sm font-medium hover:bg-violet-600 hover:text-white transition"
             >
               {categoria}
@@ -165,7 +165,7 @@ export default function HomePage() {
           <h3 className="text-3xl font-bold">Juegos destacados</h3>
 
           <Link
-            href="/home/juegos"
+            href="/juegos"
             className="bg-violet-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-violet-500 transition"
           >
             Ver más

@@ -44,7 +44,7 @@ export default async function JuegosPage({ searchParams }) {
         {categoriaSeleccionada && (
           <div className="mb-6">
             <Link
-              href="/home/juegos"
+              href="juegos"
               className="inline-block bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-500 transition"
             >
               Ver todos
