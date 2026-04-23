@@ -76,7 +76,13 @@ export default async function JuegosPage({ searchParams }) {
                 <div className="p-4">
                   <p className="text-violet-400 text-sm mb-1">{juego.categoria}</p>
                   <h2 className="text-lg font-bold">{juego.titulo}</h2>
-                  <span><Link href={"#"}>Ver mas</Link></span>
+                  <div className="space-y-6 mt-8">  
+                    <span>
+                      <Link href={`/juegos/${juego.titulo.toLowerCase().replace(/\s+/g,"-")}`}>
+                        Ver más
+                      </Link>
+                    </span>
+                  </div>                 
                 </div>
 
               </article>
