@@ -34,17 +34,3 @@ export default async function DetalleJuego({ params }) {
         </div>
     );
 }
-
-            <div className="space-y-6 mt-8">
-                {juegosDestacados.map((juego, index) => (
-                    <div className="border-b pb-6 border-white/10" key={index}>
-                        <ul className="mt-2">
-                            <li className="pl-4 cursor-pointer transition-all duration-200 hover:scale-105">
-                                <Link href={`/juegos/${juego.titulo.toLowerCase().replace(/\s+/g,"-")}`}> 
-                                    {juego.titulo} 
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                ))}
-            </div>
