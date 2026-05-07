@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { juegosDestacados } from "../components/juegos";
+import { juegosDestacados } from "../components/Juegos"
 
 export default function JuegosLayout ({ children }) {
 

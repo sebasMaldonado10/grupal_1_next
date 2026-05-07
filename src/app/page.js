@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { juegosDestacados } from "./components/juegos";
+import { juegosDestacados } from "./components/Juegos";
 
 const categorias = [
   "Acción",

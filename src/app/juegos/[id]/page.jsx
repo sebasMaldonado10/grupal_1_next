@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { juegosDestacados } from '@/app/components/juegos';
+import { juegosDestacados } from '@/app/components/Juegos';
 
 
 export default async function DetalleJuego({ params }) {
