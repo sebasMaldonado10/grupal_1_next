@@ -1,31 +1,55 @@
 import Link from "next/link";
-import Image from "next/image";
+import Juegos from "../components/Juegos";
 
-const juegos = [
-  { id: "1", titulo: "Counter Strike 2", categoria: "Shooter", imagen: "/images/counter.jpg" },
-  { id: "2", titulo: "Rocket League", categoria: "Deportes", imagen: "/images/rocket.jpg" },
-  { id: "3", titulo: "Minecraft", categoria: "Sandbox", imagen: "/images/minecraft.jpg" },
-  { id: "4", titulo: "Resident Evil 4", categoria: "Terror", imagen: "/images/re4.jpg" },
-  { id: "5", titulo: "EA Sports FC 25", categoria: "Deportes", imagen: "/images/fc25.jpg" },
-  { id: "6", titulo: "Forza Horizon 5", categoria: "Carreras", imagen: "/images/forza.jpg" },
-  { id: "7", titulo: "GTA V", categoria: "Mundo abierto", imagen: "/images/gta.jpg" },
-  { id: "8", titulo: "Call of Duty", categoria: "Acción", imagen: "/images/cod.jpg" },
-];
+// Obtenemos los géneros
+async function fetchGenres() {
+  const API_KEY = process.env.RAWG_API_KEY;
 
+  const res = await fetch(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+  const data = await res.json();
+
+  return data.results;
+}
+
+// Obtenemos los juegos
+async function fetchJuegos(categoriaSeleccionada) {
+  const API_KEY = process.env.RAWG_API_KEY;
+
+  let url = `https://api.rawg.io/api/games?key=${API_KEY}`;
+
+  if (categoriaSeleccionada) {
+    url += `&genres=${categoriaSeleccionada}`;
+  }
+
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Error al obtener los juegos");
+  }
+
+  const data = await res.json();
+
+  return data.results;
+}
+
+// Usamos los datos de las 2 APIS
 export default async function JuegosPage({ searchParams }) {
   const params = await searchParams;
   const categoriaSeleccionada = params?.categoria;
 
-  const juegosFiltrados = categoriaSeleccionada
-    ? juegos.filter((juego) => juego.categoria === categoriaSeleccionada)
-    : juegos;
+  const genres = await fetchGenres();
+  const juegos = await fetchJuegos(categoriaSeleccionada);
 
   return (
     <main className="min-h-screen bg-[#070d2b] text-white px-6 py-10">
       <div className="max-w-7xl mx-auto">
+        
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-extrabold text-violet-400">Juegos</h1>
+            <h1 className="text-4xl font-extrabold text-violet-400">
+              Juegos
+            </h1>
+
             <p className="mt-2 text-white/70">
               {categoriaSeleccionada
                 ? `Mostrando categoría: ${categoriaSeleccionada}`
@@ -35,59 +59,47 @@ export default async function JuegosPage({ searchParams }) {
 
           <Link
             href="/"
-            className="border border-violet-500 text-violet-300 px-4 py-2 rounded-xl hover:bg-violet-500 hover:text-white transition"
+            className="border border-violet-500 text-violet-300 px-4 py-2 rounded-xl hover:bg-violet-500 hover:text-white transition duration-300"
           >
             Volver
           </Link>
         </div>
 
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4">Categorías</h2>
+
+          <div className="flex flex-wrap gap-3">
+            {genres.map((genre) => (
+              <Link
+                key={genre.id}
+                href={`/juegos?categoria=${genre.slug}`}
+                className="bg-[#11183f] border border-violet-500/30 text-violet-300 px-5 py-2 rounded-full hover:bg-violet-600 hover:text-white transition duration-300"
+              >
+                {genre.name}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {categoriaSeleccionada && (
-          <div className="mb-6">
+          <div className="mb-8">
             <Link
-              href="juegos"
-              className="inline-block bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-500 transition"
+              href="/juegos"
+              className="inline-block bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-500 transition duration-300"
             >
               Ver todos
             </Link>
           </div>
         )}
 
-        {juegosFiltrados.length === 0 ? (
+        {juegos.length === 0 ? (
           <div className="bg-[#0d1436] border border-white/10 rounded-2xl p-6">
             <p className="text-white/75">
               No hay juegos cargados para esta categoría.
             </p>
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {juegosFiltrados.map((juego) => (
-              <article
-                key={juego.titulo}
-                className="bg-[#0d1436] border border-white/10 rounded-2xl overflow-hidden"
-              >
-                <Image
-                  src={juego.imagen}
-                  width={500}
-                  height={700}
-                  alt={juego.titulo}
-                  className="w-full h-[300px] object-cover"
-                />
-
-                <div className="p-4">
-                  <p className="text-violet-400 text-sm mb-1">{juego.categoria}</p>
-                  <h2 className="text-lg font-bold">{juego.titulo}</h2>
-                  <div className="space-y-6 mt-8">  
-                    <span>
-                      <Link href={`/juegos/${juego.titulo.toLowerCase().replace(/\s+/g,"-")}`}>
-                        Ver más
-                      </Link>
-                    </span>
-                  </div>                 
-                </div>
-
-              </article>
-            ))}
-          </div>
+          <Juegos juegos={juegos} />
         )}
       </div>
     </main>

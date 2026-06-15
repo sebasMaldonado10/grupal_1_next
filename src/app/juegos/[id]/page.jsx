@@ -1,36 +1,80 @@
 import Link from 'next/link'
 import React from 'react'
-import { juegosDestacados } from '@/app/components/Juegos';
+import Juegos from '@/app/components/Juegos';
 
+async function fetchJuegosPorId(id) {
+    const API_KEY = process.env.RAWG_API_KEY;
 
-export default async function DetalleJuego({ params }) {
-    const { id } = await params
-    const nombreLimpio = id.replace(/-/g, " ");
+    const res = await fetch(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+    const data = res.json();
 
-    const juegoEncontrado = juegosDestacados.find(
-        (j) => j.titulo.toLowerCase() === nombreLimpio.toLowerCase()
-    );
-
-    if (!juegoEncontrado) {
-        return <div className="text-white p-20">404</div>;
-    };
-    
-    return (
-        <div className="flex-1 p-12 bg-[#0b1238] min-h-screen text-white">
-            <h1 className="text-6xl font-black uppercase tracking-tighter text-violet-400">
-                {juegoEncontrado.titulo}
-            </h1>
-        
-            <div className="mt-8 p-6 border border-white/10 rounded-2xl bg-white/5 max-w-2xl">
-                <p className="text-xl text-gray-300"> 
-                {juegoEncontrado.descripcion}
-                </p>
-                <span className="text-white font-bold">{juegoEncontrado.precio}</span> 
-            </div>
-
-            <button className="mt-10 px-8 py-4 bg-violet-600 hover:bg-violet-500 rounded-full font-bold transition-all">
-                <Link href={"#"}>Comprar ahora</Link>
-            </button>
-        </div>
-    );
+    return data;
 }
+
+async function juegoDetalle({params}) {
+    const {id} = await params;
+    const juego = await fetchJuegosPorId(id);
+
+    return (
+    <main className="min-h-screen bg-[#070d2b] text-white px-6 py-10">
+      <div className="max-w-5xl mx-auto">
+        <Link
+          href="/juegos"
+          className="inline-block mb-6 text-violet-300 hover:text-white transition"
+        >
+          ← Volver a juegos
+        </Link>
+
+        <h1 className="text-4xl font-extrabold text-violet-400 mb-6">
+          {juego.name}
+        </h1>
+
+        {juego.background_image && (
+          <img
+            src={juego.background_image}
+            alt={juego.name}
+            width={900}
+            height={500}
+            className="w-full h-[400px] object-cover rounded-2xl mb-6"
+          />
+        )}
+
+        <div className="bg-[#11183f] border border-violet-500/20 rounded-2xl p-6 space-y-4">
+          <p>
+            <span className="text-violet-300 font-semibold">Rating:</span>{" "}
+            {juego.rating}
+          </p>
+
+          <p>
+            <span className="text-violet-300 font-semibold">Lanzamiento:</span>{" "}
+            {juego.released}
+          </p>
+
+          <p>
+            <span className="text-violet-300 font-semibold">Géneros:</span>{" "}
+            {juego.genres?.map((genre) => genre.name).join(", ")}
+          </p>
+
+          <p>
+            <span className="text-violet-300 font-semibold">Plataformas:</span>{" "}
+            {juego.platforms
+              ?.map((item) => item.platform.name)
+              .join(", ")}
+          </p>
+
+          <div>
+            <h2 className="text-2xl font-bold text-violet-400 mb-2">
+              Descripción
+            </h2>
+
+            <p className="text-white/75 leading-relaxed">
+              {juego.description_raw || "Este juego no tiene descripción disponible."}
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default juegoDetalle;
