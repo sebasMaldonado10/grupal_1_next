@@ -1,6 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import { juegosDestacados } from "./components/Juegos";
+import Juegos from "./components/Juegos";
+
+// Consumimos la API
+async function fetchJuegos() {
+
+  const API_KEY = process.env.RAWG_API_KEY;    
+
+  const res = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}`);
+  const data = await res.json();
+  console.log(data)  
+  return data.results;
+}
 
 const categorias = [
   "Acción",
@@ -14,8 +25,11 @@ const categorias = [
 
 //esto no se donde ponerlo para poder importarlo desde otras pags
 
-export default function HomePage() {
-  return (
+async function HomePage() {
+  const juegos = await fetchJuegos();
+  
+  return (  
+    
     <main className="min-h-screen bg-[#070d2b] text-white">
       <section className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="md:w-1/2">
@@ -106,29 +120,14 @@ export default function HomePage() {
             Ver más
           </Link>
         </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {juegosDestacados.map((juego) => (
-            <article
-              key={juego.titulo}
-              className="bg-[#0d1436] border border-white/10 rounded-2xl overflow-hidden"
-            >
-              <Image
-                src={juego.imagen}
-                width={500}
-                height={700}
-                alt={juego.titulo}
-                className="w-full h-[320px] object-cover"
-              />
-
-              <div className="p-4">
-                <p className="text-violet-400 text-sm mb-1">{juego.categoria}</p>
-                <h4 className="text-xl font-bold">{juego.titulo}</h4>
-              </div>
-            </article>
-          ))}
+        <div>
+      
+          <Juegos juegos={juegos} />
+          
         </div>
       </section>
     </main>
   );
 }
+
+export default HomePage;
