@@ -13,24 +13,12 @@ async function fetchJuegos() {
   return data.results;
 }
 
-const categorias = [
-  "Acción",
-  "Shooter",
-  "Carreras",
-  "Deportes",
-  "Terror",
-  "aventura",
-  "Mundo abierto",
-];
-
-//esto no se donde ponerlo para poder importarlo desde otras pags
-
 async function HomePage() {
   const juegos = await fetchJuegos();
   
   return (  
     
-    <main className="min-h-screen bg-[#070d2b] text-white">
+    <main className="min-h-screen">
       <section className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-10">
         <div className="md:w-1/2">
           <p className="text-violet-400 uppercase tracking-[0.25em] text-sm mb-3">Tu portal gamer</p>
@@ -97,10 +85,12 @@ async function HomePage() {
         <h3 className="text-2xl font-bold mb-5">Categorías</h3>
 
         <div className="flex flex-wrap gap-3">
-          {categorias.map((categoria) => (
+          {Array.from(
+            new Set(juegos?.flatMap((juego) => juego.genres?.map((g) => g.name) || []))
+          ).map((categoria) => (
             <Link
               key={categoria}
-              href={`/juegos?categoria=${encodeURIComponent(categoria)}`}
+              href={`/juegos?categoria=${encodeURIComponent(categoria.toLowerCase())}`}
               className="bg-[#11183f] border border-violet-500/20 text-violet-300 px-5 py-2 rounded-full text-sm font-medium hover:bg-violet-600 hover:text-white transition"
             >
               {categoria}

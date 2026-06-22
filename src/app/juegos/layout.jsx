@@ -22,7 +22,7 @@ export default async function JuegosLayout({ children }) {
         </div>
 
         <div className="space-y-6 mt-8">
-          {juegosSidebar.map((juego) => (
+          {juegosSidebar?.map((juego) => (
             <div className="border-b pb-6 border-white/10" key={juego.id}>
               <ul className="mt-2">
                 <li className="pl-4 cursor-pointer transition-all duration-200 hover:scale-105">
