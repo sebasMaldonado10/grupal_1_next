@@ -1,11 +1,19 @@
-import Link from "next/link";
 import Juegos from "../components/Juegos";
+import Categorias from "../components/Categorias";
+import Boton from "../components/Boton";
 
 // Obtenemos los géneros
 async function fetchGenres() {
   const API_KEY = process.env.RAWG_API_KEY;
 
-  const res = await fetch(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+  const res = await fetch(`https://api.rawg.io/api/genres?key=${API_KEY}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al obtener los géneros");
+  }
+
   const data = await res.json();
 
   return data.results;
@@ -21,7 +29,9 @@ async function fetchJuegos(categoriaSeleccionada) {
     url += `&genres=${categoriaSeleccionada}`;
   }
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Error al obtener los juegos");
@@ -43,7 +53,6 @@ export default async function JuegosPage({ searchParams }) {
   return (
     <main className="min-h-screen bg-[#070d2b] text-white px-6 py-10">
       <div className="max-w-7xl mx-auto">
-        
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-extrabold text-violet-400">
@@ -57,38 +66,16 @@ export default async function JuegosPage({ searchParams }) {
             </p>
           </div>
 
-          <Link
-            href="/"
-            className="border border-violet-500 text-violet-300 px-4 py-2 rounded-xl hover:bg-violet-500 hover:text-white transition duration-300"
-          >
+          <Boton href="/" variant="outline">
             Volver
-          </Link>
+          </Boton>
         </div>
 
-        <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4">Categorías</h2>
-
-          <div className="flex flex-wrap gap-3">
-            {genres.map((genre) => (
-              <Link
-                key={genre.id}
-                href={`/juegos?categoria=${genre.slug}`}
-                className="bg-[#11183f] border border-violet-500/30 text-violet-300 px-5 py-2 rounded-full hover:bg-violet-600 hover:text-white transition duration-300"
-              >
-                {genre.name}
-              </Link>
-            ))}
-          </div>
-        </section>
+        <Categorias genres={genres} />
 
         {categoriaSeleccionada && (
           <div className="mb-8">
-            <Link
-              href="/juegos"
-              className="inline-block bg-violet-600 px-4 py-2 rounded-lg hover:bg-violet-500 transition duration-300"
-            >
-              Ver todos
-            </Link>
+            <Boton href="/juegos">Ver todos</Boton>
           </div>
         )}
 
