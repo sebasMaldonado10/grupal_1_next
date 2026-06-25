@@ -29,11 +29,6 @@ export default function Navbar () {
             </Link>
         </nav>
   
-        <input
-          type="text"
-          placeholder="Buscar juego..."
-          className="hidden md:block bg-[#11183f] border border-white/10 rounded-full px-4 py-2 text-sm outline-none placeholder:text-white/40"
-        />
         <div className="flex gap-3">
           <button 
           onClick={cambiarTema}
@@ -55,11 +50,6 @@ export default function Navbar () {
             <svg width="16" height="16" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
             </svg>
-            {carrito.length > 0 && (
-              <span className="absolute -top-1 -right-2 bg-violet-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                {carrito.length}
-              </span>
-            )}
           </Link>
         </div>
       </div>

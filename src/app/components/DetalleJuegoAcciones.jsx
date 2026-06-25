@@ -1,9 +1,7 @@
-"use client";
-
+'use client';
 import { useAppContext } from "@/context/AppContext";
-import Boton from "./Boton";
 
-export default function JuegoCard({ juego }) {
+export default function JuegoDetalleAcciones({ juego }) {
   const {
     carrito,
     favoritos,
@@ -14,13 +12,8 @@ export default function JuegoCard({ juego }) {
     isMounted,
   } = useAppContext();
 
-  const esFavorito = isMounted
-    ? favoritos.some((fav) => fav.id === juego.id)
-    : false;
-
-  const enCarrito = isMounted
-    ? carrito.some((item) => item.id === juego.id)
-    : false;
+  const esFavorito = isMounted ? favoritos.some((fav) => fav.id === juego.id) : false;
+  const enCarrito = isMounted ? carrito.some((item) => item.id === juego.id) : false;
 
   const manejarFavorito = () => {
     if (esFavorito) {
@@ -38,31 +31,16 @@ export default function JuegoCard({ juego }) {
     }
   };
 
+  if (!isMounted) {
+    return <div className="h-12 w-48 bg-white/5 animate-pulse rounded-xl" />;
+  }
+
   return (
-    <article className="w-[340px] rounded-xl border-2 border-purple-500 text-violet-300 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 p-4 hover:bg-violet-800/50 hover:text-white transition">
-      <h3 className="text-lg italic mb-4 min-h-[56px]">{juego.name}</h3>
-
-      <img
-        src={juego.background_image || "/images/gamer.jpg"}
-        alt={juego.name}
-        className="w-full h-44 object-cover rounded-lg mb-4"
-      />
-
-      <p className="text-base">Rating: {juego.rating || "Sin rating"}</p>
-      <p className="text-base">
-        Lanzamiento: {juego.released || "Sin fecha"}
-      </p>
-
-      <div className="mt-4">
-        <Boton href={`/juegos/${juego.id}`} variant="outline" className="w-full">
-          Ver detalle
-        </Boton>
-      </div>
-
-      <div className="flex items-center justify-between p-3 mt-3">
+    <div className="flex flex-wrap gap-4 py-2">
+      <div className="flex items-end justify-end p-3 mt-3">
         <button
           onClick={manejarCarrito}
-          className="flex items-center justify-center gap-3 cursor-pointer p-2 rounded-lg bg-white/5 hover:bg-white/30 transition text-amber-400 dark:text-violet-300"
+          className="flex items-center justify-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-white/30 transition text-amber-400 dark:text-violet-300"
           title={enCarrito ? "Quitar del carrito" : "Agregar al carrito"}
         >
           {enCarrito ? (
@@ -86,13 +64,11 @@ export default function JuegoCard({ juego }) {
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
             </svg>
           )}
-
-          {enCarrito ? "Quitar del carrito" : "Agregar al carrito"}
         </button>
 
         <button
           onClick={manejarFavorito}
-          className="flex items-center justify-center gap-3 cursor-pointer p-2 transition text-amber-400 dark:text-violet-300"
+          className="flex items-center justify-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-white/30 transition text-amber-400 dark:text-violet-300"
           title={esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
         >
           {esFavorito ? (
@@ -118,6 +94,6 @@ export default function JuegoCard({ juego }) {
           )}
         </button>
       </div>
-    </article>
+		</div>
   );
 }

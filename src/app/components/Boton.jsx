@@ -16,10 +16,9 @@ export default function Boton({
 
   const variantes = {
     primary: "bg-violet-600 text-white hover:bg-violet-500",
-    outline:
-      "border border-violet-500 text-violet-300 hover:bg-violet-500 hover:text-white",
+    outline:"border border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white",
     ghost: "bg-white/5 text-violet-300 hover:bg-white/20",
-    danger: "bg-red-600 text-white hover:bg-red-500",
+    danger: "bg-red-500 text-white hover:bg-red-400",
   };
 
   const clases = `${base} ${variantes[variant]} ${className}`;

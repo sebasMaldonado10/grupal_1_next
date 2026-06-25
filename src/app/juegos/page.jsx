@@ -51,7 +51,7 @@ export default async function JuegosPage({ searchParams }) {
   const juegos = await fetchJuegos(categoriaSeleccionada);
 
   return (
-    <main className="min-h-screen bg-[#070d2b] text-white px-6 py-10">
+    <div className="w-full max-w-full overflow-x-hidden px-6 py-10">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -59,7 +59,7 @@ export default async function JuegosPage({ searchParams }) {
               Juegos
             </h1>
 
-            <p className="mt-2 text-white/70">
+            <p className="mt-2 text-current opacity-70">
               {categoriaSeleccionada
                 ? `Mostrando categoría: ${categoriaSeleccionada}`
                 : "Explorá títulos destacados por categoría."}
@@ -67,7 +67,7 @@ export default async function JuegosPage({ searchParams }) {
           </div>
 
           <Boton href="/" variant="outline">
-            Volver
+            Volver al inicio
           </Boton>
         </div>
 
@@ -89,6 +89,6 @@ export default async function JuegosPage({ searchParams }) {
           <Juegos juegos={juegos} />
         )}
       </div>
-    </main>
+    </div>
   );
 }

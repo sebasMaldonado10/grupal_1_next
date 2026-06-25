@@ -13,19 +13,19 @@ export default async function JuegosLayout({ children }) {
   const juegosSidebar = await fetchJuegosSidebar();
 
   return (
-    <div className="flex min-h-screen bg-[#0b1238] text-white">
-      <aside className="w-72 py-8 px-6 border-r border-white/10">
+    <div className="flex w-full max-w-full min-w-0 flex-row">
+      <aside className="w-72 py-8 px-6 border-r border-current/10 shrink-0 hidden md:block">
         <div>
-          <h4 className="text-violet-400 font-bold">
+          <h4 className="text-violet-500 dark:text-violet-400 font-bold">
             Todos nuestros juegos:
           </h4>
         </div>
 
         <div className="space-y-6 mt-8">
           {juegosSidebar?.map((juego) => (
-            <div className="border-b pb-6 border-white/10" key={juego.id}>
+            <div className="border-b pb-6 border-current/10" key={juego.id}>
               <ul className="mt-2">
-                <li className="pl-4 cursor-pointer transition-all duration-200 hover:scale-105">
+                <li className="pl-4 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-violet-500">
                   <Link href={`/juegos/${juego.id}`}>
                     {juego.name}
                   </Link>
@@ -36,7 +36,7 @@ export default async function JuegosLayout({ children }) {
         </div>
       </aside>
 
-      <div className="flex-1">
+      <div className="flex-1 min-w-0 w-full overflow-hidden">
         {children}
       </div>
     </div>
