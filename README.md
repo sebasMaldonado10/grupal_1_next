@@ -5,7 +5,7 @@ Mundo Gamer es una plataforma web moderna, visual y dinámica diseñada para ent
 ## 🔌 API Integrada
 El proyecto consume datos en tiempo real de la API externa **RAWG API** (Videojuegos), obteniendo dinámicamente el catálogo de juegos, calificaciones, imágenes de portada, fechas de lanzamiento y géneros.
 
-### 👥 Integrantes
+## 👥 Integrantes
 * **Maldonado Sebastián**
 * **Nadalig Carla**
 * **Urquiza Mateo**
